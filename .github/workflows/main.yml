@@ -1,0 +1,20 @@
+# https://github.com/marketplace/actions/forkbacon
+name: CI
+
+on: 
+  schedule:
+    - cron: "33 03 * * *" # everyday at 3:33 AM
+  
+jobs:
+  forkbacon:
+    runs-on: ubuntu-latest
+    steps:
+    - name: forkbacon
+    - uses: actions/checkout@v2
+    - uses: shitiomatic/forkbacon@master # Prefer using tagged version
+      with:
+        upstream_url: "https://github.com/gleu/pgdocs_fr.git" # Required! Upstream https clone URL
+        upstream_branch: "master"   # Upstream Branch to use
+        branch: "master"   # Local Branch
+        method: "rebase"   # Method to use. Can be `merge`, `merge-ff-only` or `rebase`.
+        args: "--no-push"  # Additional Arguments to pass to the container
